@@ -1,0 +1,4 @@
+Om MongoDB te installeren voer je deze helm chart uit "helm install --name mongodb -f ./values-production.yaml stable/mongodb".
+
+In de values file kan je verschillende parameters instellen. Om in de MongoDB container te gaan voer je "kubectl run --namespace default mongodb-client --rm --tty -i --image bitnami/mongodb --command -- mongo admin --host mongodb -u root -p $PASSWORD "uit.
+
