@@ -1,6 +1,6 @@
-# mongo-portworx
+# mongodb-replicaset
 
-Deploys a bitnami mongodb stack in kubernetes using portworx for persistent volumes.
+Deploys a bitnami mongodb stack in kubernetes using a replicaset for persistent volumes.
 
 MongoDB gets installed using the helm chart found in [values-production.yaml](./yaml/values-production.yaml).
 Multiple parameters can be configured in this values file. 
