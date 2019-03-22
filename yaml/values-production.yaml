@@ -314,7 +314,9 @@ metrics:
     enabled: false
     ## Used to pass Labels that are used by the Prometheus installed in your cluster to select Service Monitors to work with
     ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
-    additionalLabels: {}
+    additionalLabels: {
+      prometheus: kube-prometheus
+    }
 
     ## Specify Metric Relabellings to add to the scrape endpoint
     ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint

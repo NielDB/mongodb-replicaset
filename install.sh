@@ -1,5 +1,7 @@
 #!/bin/bash
 
+kubectl create clusterrolebinding myname-cluster-admin-binding --clusterrole=cluster-admin --user=`gcloud info --format='value(config.account)'`
+
 kubectl create -f ./yaml/gke-sc.yaml
 ./scripts/helm.sh
 
@@ -18,6 +20,12 @@ do
 done
 
 printf "\nTiller ready\n"
+
+
+helm install -f ./yaml/monitoring/prometheus-operator-chart.yaml stable/prometheus-operator --name prometheus-operator --namespace monitoring
+
+helm install -f ./yaml/monitoring/exporter-chart.yaml --name prometheus-mongodb-exporter stable/prometheus-mongodb-exporter --namespace monitoring
+
 
 helm install --name mongodb -f ./yaml/values-production.yaml stable/mongodb
 
