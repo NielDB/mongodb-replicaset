@@ -353,8 +353,6 @@ grafana:
     datasources:
       enabled: true
       label: grafana_datasource
-    custom-dashboard:
-      file: ./dashboards/mongo.json
 
   extraConfigmapMounts: []
   # - name: certs-configmap
@@ -430,7 +428,7 @@ kubelet:
     ## Enable scraping the kubelet over https. For requirements to enable this see
     ## https://github.com/coreos/prometheus-operator/issues/926
     ##
-    https: true
+    https: false
 
     ## Metric relabellings to apply to samples before ingestion
     ##
@@ -480,7 +478,7 @@ kubeControllerManager:
 ## Component scraping coreDns. Use either this or kubeDns
 ##
 coreDns:
-  enabled: true
+  enabled: false
   service:
     port: 9153
     targetPort: 9153
@@ -494,7 +492,7 @@ coreDns:
 ## Component scraping kubeDns. Use either this or coreDns
 ##
 kubeDns:
-  enabled: false
+  enabled: true
   service:
     selector:
       k8s-app: kube-dns

@@ -21,12 +21,10 @@ done
 
 printf "\nTiller ready\n"
 
+helm install -f ./yaml/monitoring/prometheus-operator-chart.yaml stable/prometheus-operator --name postack --namespace monitoring
 
-helm install -f ./yaml/monitoring/prometheus-operator-chart.yaml stable/prometheus-operator --name prometheus-operator --namespace monitoring
+sleep 5
 
-helm install -f ./yaml/monitoring/exporter-chart.yaml --name prometheus-mongodb-exporter stable/prometheus-mongodb-exporter --namespace monitoring
-
-
-helm install --name mongodb -f ./yaml/values-production.yaml stable/mongodb
+helm install -f ./yaml/values-production.yaml stable/mongodb --name mongodb
 
 while true; do kubectl get pods; done

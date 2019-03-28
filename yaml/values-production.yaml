@@ -103,7 +103,7 @@ service:
   ## Specify the loadBalancerIP value for LoadBalancer service types.
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer
   ##
-  # loadBalancerIP:
+  loadBalancerIP: "35.240.100.78"
 
 
 ## Setting up replication
@@ -311,11 +311,12 @@ metrics:
   ##      https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md
   serviceMonitor:
     ## If the operator is installed in your cluster, set to true to create a Service Monitor Entry
-    enabled: false
+    enabled: true
     ## Used to pass Labels that are used by the Prometheus installed in your cluster to select Service Monitors to work with
     ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
     additionalLabels: {
-      prometheus: kube-prometheus
+      release: postack,
+      prometheus: prometheus-operator
     }
 
     ## Specify Metric Relabellings to add to the scrape endpoint

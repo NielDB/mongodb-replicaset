@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pets-deployment
+  labels:
+    app: pets
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: pets
+  template:
+    metadata:
+      labels:
+        app: pets
+    spec:
+      containers:
+      - name: pets
+        image: nieldb/pets
+        ports:
+        - containerPort: 8080
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: pets
+  name: pets-service
+  selfLink: /api/v1/namespaces/default/services/pets-deployment
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32041
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: pets
+  sessionAffinity: None
+  type: LoadBalancer
+  loadBalancerIP: "146.148.124.251"
+status:
+  loadBalancer: {}
+
