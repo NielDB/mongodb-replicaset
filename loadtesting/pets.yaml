@@ -19,7 +19,9 @@ spec:
         image: nieldb/pets
         ports:
         - containerPort: 8080
-        
+      nodeSelector:
+        app: "pets"
+ 
 ---
 apiVersion: v1
 kind: Service
